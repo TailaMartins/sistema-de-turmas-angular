@@ -1,0 +1,76 @@
+.form-card,
+.lista-card {
+  padding: 8px;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+.form-full-height {
+  height: 40vh;
+}
+
+.qrcode-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.qrcode-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.texto-preview {
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  word-wrap: break-word;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 1.125rem;
+}
+
+.mat-icon {
+  color: #2e2e2e;
+}
+
+.card-icon {
+  justify-content: end;
+}
+
+.card-panel {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .qrcode-wrapper {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .qrcode-label {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  button[mat-button],
+  button[mat-raised-button],
+  button[mat-stroked-button] {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .form-full-height {
+    height: 20vh;
+  }
+}

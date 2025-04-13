@@ -1,0 +1,70 @@
+.turma-page {
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  padding: 16px;
+  // height: 80vh;
+}
+
+.turma-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2e2e2e;
+  margin-bottom: 12px;
+}
+
+.texto-preview {
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: pre-line;
+  color: #333;
+}
+
+.texto-vazio {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 16px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .turma-page {
+    padding: 8px;
+  }
+
+  .turma-card {
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .texto-preview {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .card-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

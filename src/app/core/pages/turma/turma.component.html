@@ -1,0 +1,36 @@
+<section class="turma-page">
+  <mat-card class="turma-card">
+    <mat-card-header>
+      <mat-card-title class="card-title">Texto da Turma</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div
+        *ngIf="textoDaTurma; else semTexto"
+        [id]="'texto-' + turmaId"
+        class="texto-preview"
+        [innerHTML]="textoDaTurma"
+      ></div>
+
+      <ng-template #semTexto>
+        <p class="texto-vazio">
+          Nenhum texto foi adicionado para esta turma ainda.
+        </p>
+      </ng-template>
+    </mat-card-content>
+
+    <mat-card-actions class="card-buttons">
+      <app-button
+        *ngIf="textoDaTurma"
+        text="Baixar Imagem"
+        [outline]="true"
+        (click)="baixarTextoPng()"
+      />
+      <app-button
+        *ngIf="textoDaTurma"
+        text="Baixar PDF"
+        (click)="baixarPdf()"
+      />
+    </mat-card-actions>
+  </mat-card>
+</section>

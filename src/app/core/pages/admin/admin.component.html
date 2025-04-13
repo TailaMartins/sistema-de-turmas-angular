@@ -1,0 +1,96 @@
+<div class="page">
+  <mat-accordion>
+    <mat-expansion-panel expanded="true" class="form-card">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="card-title">
+          <mat-icon>{{ isEdit ? "edit" : "add" }}</mat-icon>
+          {{ isEdit ? "Editar Texto" : "Adicionar Novo Texto" }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="form" class="form">
+        <mat-form-field class="form-full-width">
+          <mat-label>Turma</mat-label>
+          <mat-select formControlName="turmas" multiple>
+            @for (turma of selecaoTurma; track turma) {
+            <mat-option [value]="turma">{{ turma }}</mat-option>
+            }
+          </mat-select>
+          @if (form.get('turmas')?.hasError('required')) {
+          <mat-error>Este é um campo obrigatório.</mat-error>
+          }
+        </mat-form-field>
+        <br />
+        <quill-editor
+          class="form-full-width form-full-height"
+          formControlName="texto"
+          [modules]="editorConfig"
+        ></quill-editor>
+      </form>
+      <div class="card-buttons">
+        <app-button
+          [text]="'Cancelar'"
+          [outline]="true"
+          (click)="resetForm()"
+        />
+        <app-button
+          [text]="isEdit ? 'Editar' : 'Salvar'"
+          (click)="openModal()"
+          [disabled]="form.invalid"
+        />
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion multi>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="card-title"
+          >Gerenciar Conteúdo das Turmas
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-expansion-panel
+        class="card-panel"
+        *ngFor="let turma of turmas$ | async"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>Turma {{ turma.id }}</mat-panel-title>
+          <mat-panel-description class="card-icon">
+            <button
+              mat-icon-button
+              aria-label="botão com icone de lapis"
+              (click)="editarTexto(turma)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              aria-label="botão com icone de lixeira"
+              (click)="removerTexto(turma)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="texto-preview" [innerHTML]="turma.texto"></div>
+
+        <div class="qrcode-wrapper">
+          <qrcode
+            id="qrcode-{{ turma.id }}"
+            [qrdata]="getQRCodeUrl(turma.id)"
+            [width]="128"
+            [errorCorrectionLevel]="'M'"
+            [elementType]="'canvas'"
+          ></qrcode>
+          <app-button
+            [text]="'Baixar QR Code'"
+            [outline]="true"
+            (click)="baixarQRCode(turma.id)"
+          />
+        </div>
+      </mat-expansion-panel>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+

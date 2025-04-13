@@ -1,0 +1,16 @@
+<div mat-dialog-title class="header__title">
+  <mat-icon>report</mat-icon>
+  <h1 class="title">{{ data.title }}</h1>
+</div>
+
+<mat-dialog-content>
+  <h3 class="text">{{ data.text }}</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+  <button mat-raised-button (click)="clickBotaoEsquerdo()">
+    {{ data.botaoEsquerdo }}
+  </button>
+  <button mat-flat-button (click)="clickBotaoDireito()">
+    {{ data.botaoDireito }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,22 @@
+.header {
+  width: 100%;
+  box-shadow: 0 2px 4px #00000018;
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .titulo {
+    font-weight: 500;
+    font-size: 20px;
+  }
+}

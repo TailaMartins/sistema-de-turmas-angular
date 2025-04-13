@@ -1,0 +1,16 @@
+<header class="header">
+  <mat-toolbar class="toolbar">
+    <div class="header-left">
+      <button mat-icon-button aria-label="Voltar para a página inicial" (click)="redirectTo()">
+        <mat-icon>menu_book</mat-icon>
+      </button>
+      <span class="titulo">Professor Thiago</span>
+    </div>
+
+    <ng-container *ngIf="isLoggedIn$ | async">
+      <button mat-icon-button aria-label="Sair" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </ng-container>
+  </mat-toolbar>
+</header>

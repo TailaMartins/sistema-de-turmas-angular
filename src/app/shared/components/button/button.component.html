@@ -1,0 +1,7 @@
+<button *ngIf="outline" mat-stroked-button [attr.type]="type" [disabled]="disabled" class="outline">
+  {{ text }}
+</button>
+
+<button *ngIf="!outline" mat-raised-button [attr.type]="type" [disabled]="disabled" class="filled">
+  {{ text }}
+</button>
