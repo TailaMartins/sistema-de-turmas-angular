@@ -76,7 +76,8 @@ export class AdminComponent implements OnInit {
     const dialog = this.dialog.open(ModalComponent, {
       data: {
         title: `Deseja ${statusMessagesMapper[this.isEdit.toString()]} este texto agora ?`,
-        text: `Ao confirmar a ${statusTextMapper[this.isEdit.toString()]}, o texto ficará disponível para os alunos.`,
+        text: [`Ao confirmar a ${statusTextMapper[this.isEdit.toString()]}, o texto ficará disponível para os alunos.`,
+        ],
         botaoDireito: `${statusMessagesMapper[this.isEdit.toString()]} texto`,
         botaoEsquerdo: 'Cancelar',
         type: 'warn',
@@ -90,7 +91,6 @@ export class AdminComponent implements OnInit {
 
   salvarTexto() {
     const { turmas, texto } = this.form.value;
-
 
     const statusTextMapper: any = {
       true: 'editado',
@@ -113,6 +113,22 @@ export class AdminComponent implements OnInit {
     });
 
     this.isEdit = true;
+  }
+
+  openModalDelete(turma: Turma) {
+    const dialog = this.dialog.open(ModalComponent, {
+      data: {
+        title: 'Tem certeza que Deseja Deletar esse Texto?',
+        text: ['Ao deletar esse texto, ele será automaticamente apagado da base de dados.'],
+        botaoDireito: 'Deletar Texto',
+        botaoEsquerdo: 'Cancelar',
+        type: 'warn',
+      },
+    });
+
+    dialog.componentInstance.actionBotaoDireito.subscribe(() => {
+      this.removerTexto(turma)
+    });
   }
 
   removerTexto(turma: Turma) {

@@ -8,7 +8,7 @@
 
 <mat-dialog-content class="modal-content">
   <ng-content></ng-content>
-  <p *ngIf="data.text">{{ data.text }}</p>
+  <p *ngFor="let text of data.text">{{ data.text }}</p>
 </mat-dialog-content>
 
 <mat-dialog-actions class="modal-actions">
