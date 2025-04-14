@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit {
   private readonly formbuilder = inject(FormBuilder);
   private readonly service = inject(TurmaService);
   private readonly dialog = inject(MatDialog);
-  private readonly alertService = inject(AlertService)
+  private readonly alertService = inject(AlertService);
 
   readonly selecaoTurma = selecaoTurmas;
   readonly editorConfig = editorConfig;
@@ -62,23 +62,24 @@ export class AdminComponent implements OnInit {
 
   openModal() {
     if (this.form.invalid) return;
-    const statusMessages: any = {
+
+    const statusMessagesMapper: any = {
       true: 'Editar',
-      false: 'Adicionar',
-      undefined: 'Adicionar'
+      false: 'Incluir',
     };
 
-    const isEdit = this.isEdit;
-    const message = statusMessages[isEdit.toString()] || statusMessages['undefined'];
+    const statusTextMapper: any = {
+      true: 'edição',
+      false: 'inclusão',
+    };
 
     const dialog = this.dialog.open(ModalComponent, {
-      width: '500px',
-      height: '250px',
       data: {
-        title: `Deseja ${message} este texto agora ?`,
-        text: 'Ao confirmar, o texto ficará disponível para os alunos da turmas.',
-        botaoDireito: `${message} texto`,
+        title: `Deseja ${statusMessagesMapper[this.isEdit.toString()]} este texto agora ?`,
+        text: `Ao confirmar a ${statusTextMapper[this.isEdit.toString()]}, o texto ficará disponível para os alunos.`,
+        botaoDireito: `${statusMessagesMapper[this.isEdit.toString()]} texto`,
         botaoEsquerdo: 'Cancelar',
+        type: 'warn',
       },
     });
 
@@ -90,11 +91,17 @@ export class AdminComponent implements OnInit {
   salvarTexto() {
     const { turmas, texto } = this.form.value;
 
+
+    const statusTextMapper: any = {
+      true: 'editado',
+      false: 'incluído',
+    };
+
     if (turmas && texto) {
       turmas.forEach((turmaId: string) => {
         this.service.adicionarTexto(turmaId, texto);
       });
-      this.alertService.success('Texto Adicionado com sucesso!');
+      this.alertService.success(`Texto ${statusTextMapper[this.isEdit.toString()]} com sucesso!`);
       this.form.reset();
     }
   }
@@ -110,7 +117,7 @@ export class AdminComponent implements OnInit {
 
   removerTexto(turma: Turma) {
     this.service.removerTexto(turma.id).then(() => {
-      this.alertService.success('Texto apagado com sucesso!');
+      this.alertService.success('Texto deletado com sucesso!');
     });
   }
 
@@ -123,9 +130,10 @@ export class AdminComponent implements OnInit {
     return `${window.location.origin}/turma/${turmaId}`;
   }
 
-
   baixarQRCode(turmaId: string) {
-    const canvas = document.getElementById(`qrcode-${turmaId}`)?.querySelector('canvas') as HTMLCanvasElement;
+    const canvas = document
+      .getElementById(`qrcode-${turmaId}`)
+      ?.querySelector('canvas') as HTMLCanvasElement;
     if (canvas) {
       const link = document.createElement('a');
       link.href = canvas.toDataURL('image/png');
@@ -133,5 +141,4 @@ export class AdminComponent implements OnInit {
       link.click();
     }
   }
-
 }

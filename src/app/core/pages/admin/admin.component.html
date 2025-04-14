@@ -4,7 +4,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="card-title">
           <mat-icon>{{ isEdit ? "edit" : "add" }}</mat-icon>
-          {{ isEdit ? "Editar Texto" : "Adicionar Novo Texto" }}
+          {{ isEdit ? "Editar Texto" : "Incluir Novo Texto" }}
         </mat-panel-title>
       </mat-expansion-panel-header>
       <form [formGroup]="form" class="form">
@@ -29,7 +29,7 @@
       <div class="card-buttons">
         <app-button
           [text]="'Cancelar'"
-          [outline]="true"
+          layout="outline"
           (click)="resetForm()"
         />
         <app-button
@@ -84,7 +84,7 @@
           ></qrcode>
           <app-button
             [text]="'Baixar QR Code'"
-            [outline]="true"
+            layout="outline"
             (click)="baixarQRCode(turma.id)"
           />
         </div>
@@ -92,5 +92,3 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-
-

@@ -10,10 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatButtonModule, CommonModule],
 })
 export class ButtonComponent {
-  @Input() text!: string;
-  @Input() outline!: boolean;
+  @Input({ required: true }) text!: string;
   @Input() disabled!: boolean;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-
-
+  @Input() layout: 'outline' | 'default' = 'default';
+  @Input() color!: 'warn' | 'error';
 }

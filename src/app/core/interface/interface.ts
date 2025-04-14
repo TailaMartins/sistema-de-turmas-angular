@@ -3,9 +3,4 @@ export interface Turma {
   texto: string;
 }
 
-export interface Modal {
-  title: string;
-  text: string;
-  botaoDireito: string;
-  botaoEsquerdo: string;
-}
+

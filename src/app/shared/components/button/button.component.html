@@ -1,7 +1,13 @@
-<button *ngIf="outline" mat-stroked-button [attr.type]="type" [disabled]="disabled" class="outline">
-  {{ text }}
-</button>
-
-<button *ngIf="!outline" mat-raised-button [attr.type]="type" [disabled]="disabled" class="filled">
+<button
+  class="button"
+  [disabled]="disabled"
+  [type]="type"
+  [ngClass]="{
+    default: layout === 'default',
+    outline: layout === 'outline',
+    warn: color === 'warn',
+    error: color === 'error'
+    }"
+>
   {{ text }}
 </button>
