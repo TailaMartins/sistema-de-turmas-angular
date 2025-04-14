@@ -1,12 +1,14 @@
 @import url(./theme/theme.scss);
 
+@import url(./theme/styles/components/_mat-snackbar.scss);
+
 html,
 body {
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Roboto', sans-serif !important;
   padding: 0;
   background-color: #f1f0ee;
   list-style-type: none;
