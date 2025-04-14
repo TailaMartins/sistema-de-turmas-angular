@@ -94,6 +94,7 @@ export class AdminComponent implements OnInit {
       turmas.forEach((turmaId: string) => {
         this.service.adicionarTexto(turmaId, texto);
       });
+      this.alertService.success('Texto Adicionado com sucesso!');
       this.form.reset();
     }
   }
@@ -109,7 +110,7 @@ export class AdminComponent implements OnInit {
 
   removerTexto(turma: Turma) {
     this.service.removerTexto(turma.id).then(() => {
-      this.alertService.success('Texto apagado com sucesso!')
+      this.alertService.success('Texto apagado com sucesso!');
     });
   }
 

@@ -16,11 +16,10 @@ export class AlertService {
     this.openSnackbar(message, 'error');
   }
 
-  private openSnackbar(message: string, type: 'success' | 'error') {
+  private openSnackbar(message: string, type: string) {
     this.snackBar.openFromComponent(AlertComponent, {
       data: { message, type },
       duration: 3000,
-      panelClass: [type],
     });
   }
 }

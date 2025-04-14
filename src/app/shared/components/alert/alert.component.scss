@@ -1,0 +1,30 @@
+.snackbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  border-radius: 5px;
+
+
+  &.success{
+    background: #2e7d32;
+  }
+
+  &.error{
+    background: #c62828;
+  }
+
+  .message{
+    color: #fefefe;
+    font-weight: 500;
+  }
+
+  .snackbar-button{
+    background: transparent;
+    color: #fefefe;
+    cursor: pointer;
+    border: transparent !important;
+  }
+}

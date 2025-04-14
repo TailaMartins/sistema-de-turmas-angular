@@ -1,5 +1,7 @@
-<div class="snackbar-container" [ngClass]="data.type">
-  <span>{{ data.message }}</span>
-  <!-- <mat-icon *ngIf="data.type === 'success'">check_circle</mat-icon>
-  <mat-icon *ngIf="data.type === 'error'">close</mat-icon> -->
+<div class="snackbar" [ngClass]="data.type">
+  <div class="message">{{ data.message }}</div>
+
+  <button class="snackbar-button" type="button" (click)="ref.dismiss()">
+    <mat-icon>cancel</mat-icon>
+  </button>
 </div>
